@@ -36,23 +36,20 @@ Update 2/21/2023 by funkless
 * forked from: https://github.com/jeff502/Twitch-Prediction-Bot \
 * loaded into VSCode with python 3.11.1 \
 * prepped to target twitch.tv/leopard (you can change this to a different streamer if you like, hemhem datto hemhem) \
-* created a virtual environment with:
+* created a virtual environment with: \
     
 `     py -m venv .venv `
 
 * ensure that you run
 
+` python.exe -m pip install --upgrade pip `
 
-`    
-     python.exe -m pip install --upgrade pip
+` pip install selenium  `
 
-     pip install selenium  
-
-     pip install webdriver_manager 
-`
+` pip install webdriver_manager `
 
 ...before execution, add the cookies to twitch_cookies.csv (see instructions above, retain first line for header). I installed https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid
-to get the cookies, exported to TXT and then rearranged the columns in excel to get the 
+to get the cookies, exported to TXT and then rearranged the columns in excel to get the \
     
 `     name,value,domain `
 
@@ -68,8 +65,6 @@ TO USE THIS CODE
 You'll need to set up VSCode with python3 or a similar python interpreter, use the pip commands above to install the libraries, and then run it. Remember to install the libraries to your venv (virtual environment) before running, and ensure you're running main.py inside the venv as well. \
 
 run with this command from the venv terminal, and in the directory: \
-`
-py main.py
-`
+` py main.py `
 
 Untested, so I don't know if it'll work, I'll update if it doesn't and I get it working. If you wanted to run this automatically you could probably create a chronjob or scheduled task in windows at 6:30am Eastern #neverlate #alwaysontime \
