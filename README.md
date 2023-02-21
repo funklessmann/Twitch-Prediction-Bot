@@ -41,6 +41,8 @@ Update 2/21/2023 by funkless
 `     py -m venv .venv `
 
 * ensure that you run
+
+
 `    
      python.exe -m pip install --upgrade pip
 
