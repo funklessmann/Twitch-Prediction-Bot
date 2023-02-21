@@ -26,21 +26,21 @@ For logging in manually, set the intial sleep to two minutes and comment out lin
 
 
 Update May-6 \
+================
 Cleaned up and refactored the code. \
 Added a feature to continute your betting streak between streams. \
 
-=============================
 Update 2/21/2023 by funkless
 ============================
 
-* forked from: https://github.com/jeff502/Twitch-Prediction-Bot
-* loaded into VSCode with python 3.11.1
-* prepped to target twitch.tv/leopard (you can change this to a different streamer if you like, hemhem datto hemhem)
-* created a virtual environment with: 
+* forked from: https://github.com/jeff502/Twitch-Prediction-Bot \
+* loaded into VSCode with python 3.11.1 \
+* prepped to target twitch.tv/leopard (you can change this to a different streamer if you like, hemhem datto hemhem) \
+* created a virtual environment with:  \
     
-    py -m venv .venv
+    py -m venv .venv 
 
-* ensure that you run 
+* ensure that you run \  
     
     python.exe -m pip install --upgrade pip
 
@@ -53,20 +53,19 @@ to get the cookies, exported to TXT and then rearranged the columns in excel to 
     
     name,value,domain
 
-...in the right order. Also a thing to watch out for is that you can ONLY use twitch.tv cookies, so things like gql.twitch.tv or passport.twitch.tv need to be taken out. Also, if your domain is showing at ".twitch.tv" ensure to change it to "twitch.tv" (no prepended period). 
+...in the right order. Also a thing to watch out for is that you can ONLY use twitch.tv cookies, so things like gql.twitch.tv or passport.twitch.tv need to be taken out. Also, if your domain is showing at ".twitch.tv" ensure to change it to "twitch.tv" (no prepended period). \
 
-* removed mentions from the code of defaulting to 6% of channel points
-* set the % you want to spend to the top of main.py
-* I also added a bunch more libraries at the top of the code to ensure the drivers are installed on execute, and switched it from a Chrome/Chromium build to a firefox build. I haven't tested what happens if you don't have Chrome and Firefox installed on your machine, so if you're having trouble start there, or if you hate firefox for some reason, go back to the original fork above. 
+* removed mentions from the code of defaulting to 6% of channel points \
+* set the % you want to spend to the top of main.py \
+* I also added a bunch more libraries at the top of the code to ensure the drivers are installed on execute, and switched it from a Chrome/Chromium build to a firefox build. I haven't tested what happens if you don't have Chrome and Firefox installed on your machine, so if you're having trouble start there, or if you hate firefox for some reason, go back to the original fork above. \
 
-================
 TO USE THIS CODE
 ================
 
-You'll need to set up VSCode with python3 or a similar python interpreter, use the pip commands above to install the libraries, and then run it. Remember to install the libraries to your venv (virtual environment) before running, and ensure you're running main.py inside the venv as well. 
+You'll need to set up VSCode with python3 or a similar python interpreter, use the pip commands above to install the libraries, and then run it. Remember to install the libraries to your venv (virtual environment) before running, and ensure you're running main.py inside the venv as well. \
 
-run with this command from the venv terminal, and in the directory:
+run with this command from the venv terminal, and in the directory: \
 
 py main.py
 
-Untested, so I don't know if it'll work, I'll update if it doesn't and I get it working. If you wanted to run this automatically you could probably create a chronjob or scheduled task in windows at 6:30am Eastern #neverlate #alwaysontime
+Untested, so I don't know if it'll work, I'll update if it doesn't and I get it working. If you wanted to run this automatically you could probably create a chronjob or scheduled task in windows at 6:30am Eastern #neverlate #alwaysontime \
