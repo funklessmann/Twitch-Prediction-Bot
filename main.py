@@ -1,20 +1,55 @@
-import time
+import time, sys
 from csv import DictReader
+
+"""
+    # forked from: https://github.com/jeff502/Twitch-Prediction-Bot
+    # loaded into VSCode with python 3.11.1
+    # created a 
+    
+py -m venv .venv
+
+    # and then ran the below libraries
+    # ensure that you run 
+    
+python.exe -m pip install --upgrade pip
+pip install selenium  
+pip install webdriver_manager 
+
+    # before execution, add the cookies to twitch_cookies.csv (retain first line for header)
+    # I installed https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid
+    # to get the cookies, exported to TXT and then rearranged the columns in excel to get the 
+    
+name,value,domain
+
+    # in the right order
+"""
+
 from selenium import webdriver
+from selenium.common.exceptions import (ElementClickInterceptedException,
+                                        NoSuchElementException,
+                                        StaleElementReferenceException)
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as ChromiumService
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException, \
-    StaleElementReferenceException
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.utils import ChromeType
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+
 from point_logic import get_points, how_much_to_bet, time_set
-from prediction_logic import prediction_history, check_prediction_history
+from prediction_logic import check_prediction_history, prediction_history
 from xpath_and_css_selectors import *
 
-
-CHANNEL_NAME = "loltyler1"
+CHANNEL_NAME = "leopard"
 STREAMER = f"https://www.twitch.tv/popout/{CHANNEL_NAME}/chat"
 
+# percent_amount = 0.0625 - six percent
+percent_amount = 0.055 # five percent
+
 ser = Service("C:\Program Files (x86)\webdriver\chromedriver.exe")
-driver = webdriver.Chrome(service=ser)
+driver = webdriver.Firefox(
+    service=FirefoxService(GeckoDriverManager().install()))
 
 
 def get_cookie_values(file):
@@ -45,9 +80,10 @@ if __name__ == "__main__":
     driver.get(STREAMER)
     upload_cookies()
     if check_prediction_history(CHANNEL_NAME):
-        total_before_bets, current_loop_count, six_percent = check_prediction_history(CHANNEL_NAME)
+        total_before_bets, current_loop_count, the_percent = check_prediction_history(
+            CHANNEL_NAME)
     else:
-        six_percent = 1
+        the_percent = 1
         current_loop_count = 1
         total_before_bets = 0
 
@@ -55,7 +91,8 @@ if __name__ == "__main__":
     while True:
         try:
             time.sleep(2)
-            channel_points = driver.find_element(By.CSS_SELECTOR, my_channel_points)
+            channel_points = driver.find_element(
+                By.CSS_SELECTOR, my_channel_points)
             channel_points.click()
             time.sleep(2)
 
@@ -109,13 +146,14 @@ if __name__ == "__main__":
 
                 if current_loop_count > 4:
                     current_loop_count = 1
-                    six_percent = (round(points * 0.0625))
+                    the_percent = (round(points * percent_amount))
                     total_before_bets = total_points
 
                 elif current_loop_count == 1:
-                    six_percent = (round(points * 0.0625))
+                    the_percent = (round(points * percent_amount))
 
-                points_to_bet = how_much_to_bet(six_p=six_percent, current_loop=current_loop_count)
+                points_to_bet = how_much_to_bet(
+                    the_p=the_percent, current_loop=current_loop_count)
 
             except NoSuchElementException as e:
                 try:
@@ -152,8 +190,8 @@ if __name__ == "__main__":
                 red_vote_button.click()
                 time.sleep(2)
                 prediction_history(CHANNEL_NAME, points_to_bet, "Red",
-                                   current_loop_count, total_before_bets, six_percent)
-                
+                                   current_loop_count, total_before_bets, the_percent)
+
                 current_loop_count += 1
                 driver.find_element(By.XPATH, red_end).click()
             else:
@@ -165,7 +203,7 @@ if __name__ == "__main__":
                 blue_vote_button.click()
                 time.sleep(2)
                 prediction_history(CHANNEL_NAME, points_to_bet, "Blue",
-                                   current_loop_count, total_before_bets, six_percent)
+                                   current_loop_count, total_before_bets, the_percent)
 
                 current_loop_count += 1
                 driver.find_element(By.XPATH, blue_end).click()
