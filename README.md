@@ -42,7 +42,9 @@ and then ran the below libraries
 ensure that you run 
     
 python.exe -m pip install --upgrade pip
+
 pip install selenium  
+
 pip install webdriver_manager 
 
 before execution, add the cookies to twitch_cookies.csv (retain first line for header)
