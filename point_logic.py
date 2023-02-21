@@ -37,20 +37,24 @@ def get_points(current_points):
     return int(current_points)
 
 
-def how_much_to_bet(six_p, current_loop):
+def how_much_to_bet(the_p, current_loop):
     """
-    :param six_p: 6.25% of our total
+    :param the_p: 6.25% of our total
     :param current_loop: Current loop iteration
     :return: 6.25% of our total * the current loop
     """
     if current_loop == 1:
-        return six_p
+        return the_p
+    else:
+        return the_p
+    """
     elif current_loop == 2:
-        return six_p * 2
+        return the_p * 2
     elif current_loop == 3:
-        return six_p * 4
+        return the_p * 4
     elif current_loop == 4:
-        return six_p * 8
+        return the_p * 8
+    """
 
 
 def time_set(total_time):
