@@ -28,3 +28,27 @@ For logging in manually, set the intial sleep to two minutes and comment out lin
 Update May-6 \
 Cleaned up and refactored the code. \
 Added a feature to continute your betting streak between streams. \
+
+Update 2/21/2023
+
+forked from: https://github.com/jeff502/Twitch-Prediction-Bot
+loaded into VSCode with python 3.11.1
+prepped to target twitch.tv/leopard
+created a 
+    
+py -m venv .venv
+
+and then ran the below libraries
+ensure that you run 
+    
+python.exe -m pip install --upgrade pip
+pip install selenium  
+pip install webdriver_manager 
+
+before execution, add the cookies to twitch_cookies.csv (retain first line for header)
+I installed https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid
+to get the cookies, exported to TXT and then rearranged the columns in excel to get the 
+    
+name,value,domain
+
+in the right order
